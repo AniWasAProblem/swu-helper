@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "name": "Qui-Gon - More Draw/Wipe",
+    "author": "josh1238"
+  },
+  "leader": {
+    "id": "LOF_016",
+    "count": 1
+  },
+  "base": {
+    "id": "LOF_027",
+    "count": 1
+  },
+  "deck": [
+    {
+      "id": "LOF_146",
+      "count": 3
+    },
+    {
+      "id": "JTL_201",
+      "count": 3
+    },
+    {
+      "id": "JTL_149",
+      "count": 3
+    },
+    {
+      "id": "LOF_193",
+      "count": 3
+    },
+    {
+      "id": "JTL_222",
+      "count": 2
+    },
+    {
+      "id": "LOF_149",
+      "count": 3
+    },
+    {
+      "id": "LOF_197",
+      "count": 3
+    },
+    {
+      "id": "SEC_207",
+      "count": 2
+    },
+    {
+      "id": "LOF_195",
+      "count": 3
+    },
+    {
+      "id": "LOF_175",
+      "count": 2
+    },
+    {
+      "id": "JTL_226",
+      "count": 2
+    },
+    {
+      "id": "JTL_153",
+      "count": 3
+    },
+    {
+      "id": "LOF_167",
+      "count": 2
+    },
+    {
+      "id": "SEC_179",
+      "count": 3
+    },
+    {
+      "id": "SEC_163",
+      "count": 1
+    },
+    {
+      "id": "LOF_177",
+      "count": 2
+    },
+    {
+      "id": "LOF_190",
+      "count": 2
+    },
+    {
+      "id": "JTL_180",
+      "count": 2
+    },
+    {
+      "id": "LAW_080",
+      "count": 2
+    },
+    {
+      "id": "LOF_218",
+      "count": 2
+    },
+    {
+      "id": "LOF_142",
+      "count": 2
+    },
+    {
+      "id": "LOF_154",
+      "count": 2
+    }
+  ],
+  "sideboard": []
+}
