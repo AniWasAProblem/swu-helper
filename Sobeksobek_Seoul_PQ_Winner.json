@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "name": "Sobeksobek Seoul PQ Winner",
+    "author": "josh1238"
+  },
+  "leader": {
+    "id": "SEC_004",
+    "count": 1
+  },
+  "base": {
+    "id": "JTL_024",
+    "count": 1
+  },
+  "deck": [
+    {
+      "id": "LOF_111",
+      "count": 3
+    },
+    {
+      "id": "LAW_037",
+      "count": 3
+    },
+    {
+      "id": "LOF_118",
+      "count": 2
+    },
+    {
+      "id": "LAW_111",
+      "count": 2
+    },
+    {
+      "id": "SEC_256",
+      "count": 3
+    },
+    {
+      "id": "SEC_119",
+      "count": 2
+    },
+    {
+      "id": "SEC_098",
+      "count": 2
+    },
+    {
+      "id": "LOF_100",
+      "count": 2
+    },
+    {
+      "id": "LOF_093",
+      "count": 3
+    },
+    {
+      "id": "LAW_038",
+      "count": 3
+    },
+    {
+      "id": "SEC_078",
+      "count": 2
+    },
+    {
+      "id": "LAW_133",
+      "count": 2
+    },
+    {
+      "id": "LOF_128",
+      "count": 3
+    },
+    {
+      "id": "JTL_112",
+      "count": 3
+    },
+    {
+      "id": "LAW_035",
+      "count": 1
+    },
+    {
+      "id": "LAW_039",
+      "count": 3
+    },
+    {
+      "id": "LOF_247",
+      "count": 3
+    },
+    {
+      "id": "LAW_129",
+      "count": 2
+    },
+    {
+      "id": "LAW_041",
+      "count": 2
+    },
+    {
+      "id": "LAW_108",
+      "count": 2
+    },
+    {
+      "id": "LOF_045",
+      "count": 3
+    },
+    {
+      "id": "SEC_046",
+      "count": 2
+    },
+    {
+      "id": "SEC_101",
+      "count": 2
+    },
+    {
+      "id": "LOF_061",
+      "count": 3
+    },
+    {
+      "id": "JTL_250",
+      "count": 2
+    }
+  ],
+  "sideboard": [
+    {
+      "id": "JTL_096",
+      "count": 2
+    },
+    {
+      "id": "SEC_163",
+      "count": 2
+    },
+    {
+      "id": "LAW_149",
+      "count": 2
+    },
+    {
+      "id": "LAW_133",
+      "count": 1
+    },
+    {
+      "id": "LAW_040",
+      "count": 2
+    },
+    {
+      "id": "SEC_046",
+      "count": 1
+    }
+  ]
+}
