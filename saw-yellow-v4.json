@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "name": "Saw Gerrera Spy Aggro (v4)",
+    "author": "josh1238"
+  },
+  "leader": {
+    "id": "LAW_001",
+    "count": 1
+  },
+  "base": {
+    "id": "JTL_028",
+    "count": 1
+  },
+  "deck": [
+    {
+      "id": "LAW_082",
+      "count": 2
+    },
+    {
+      "id": "JTL_166",
+      "count": 2
+    },
+    {
+      "id": "SEC_236",
+      "count": 3
+    },
+    {
+      "id": "IBH_059",
+      "count": 2
+    },
+    {
+      "id": "LAW_057",
+      "count": 2
+    },
+    {
+      "id": "LAW_234",
+      "count": 3
+    },
+    {
+      "id": "LAW_058",
+      "count": 3
+    },
+    {
+      "id": "LAW_230",
+      "count": 3
+    },
+    {
+      "id": "LAW_059",
+      "count": 3
+    },
+    {
+      "id": "JTL_177",
+      "count": 3
+    },
+    {
+      "id": "SEC_221",
+      "count": 3
+    },
+    {
+      "id": "LAW_193",
+      "count": 3
+    },
+    {
+      "id": "LAW_196",
+      "count": 1
+    },
+    {
+      "id": "LAW_074",
+      "count": 1
+    },
+    {
+      "id": "SEC_160",
+      "count": 3
+    },
+    {
+      "id": "LAW_231",
+      "count": 3
+    },
+    {
+      "id": "LAW_166",
+      "count": 2
+    },
+    {
+      "id": "LAW_070",
+      "count": 3
+    },
+    {
+      "id": "LAW_208",
+      "count": 2
+    },
+    {
+      "id": "LAW_189",
+      "count": 3
+    }
+  ],
+  "sideboard": [
+    {
+      "id": "LAW_081",
+      "count": 3
+    },
+    {
+      "id": "JTL_230",
+      "count": 2
+    },
+    {
+      "id": "LAW_246",
+      "count": 2
+    },
+    {
+      "id": "JTL_162",
+      "count": 3
+    }
+  ]
+}
