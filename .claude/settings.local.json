@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(pdftotext -layout SWU_Rules_v7_0.pdf -)",
+      "Bash(apt list *)"
     ]
   }
 }

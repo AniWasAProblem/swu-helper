@@ -33,6 +33,10 @@ Conditional fields:
 - `Keywords` — parsed list of keyword abilities (`Overwhelm`, `Saboteur`, `Sentinel`, …); the same keywords also appear inline in `FrontText` with reminder text.
 - `Traits` — uppercase strings like `IMPERIAL`, `VEHICLE`, `FORCE`. Used for card-text references ("friendly Force unit").
 
+### Token cards are NOT in the dumps
+
+The `*_Cards.json` files contain only deck cards — **token units/upgrades have no entry**. Known token stats (from the comprehensive rules): **Spy token** = 0 power / 2 HP ground unit, OFFICIAL trait, no aspect icons, **Raid 2** (so it attacks as a 2-power unit). **Battle Droid token** = 1/1 ground unit, SEPARATIST/DROID/TROOPER, Villainy. **Clone Trooper token** = 2/2 ground unit, REPUBLIC/CLONE/TROOPER, Heroism. **Experience token** = upgrade, +1/+1. **Shield token** = upgrade, +0/+0, prevents the next instance of damage. **Force token** = no stats (base-zone token). When a deck references a token, look up its profile from the rules, not the JSON.
+
 ### Counts (printings, not unique cards)
 
 `JTL`: 1122 · `LAW`: 901 · `LOF`: 1160 · `SEC`: 1151. If a task talks about "how many cards in set X," confirm whether the user means printings or distinct cards.
@@ -42,6 +46,15 @@ Conditional fields:
 - Use `python3 -c "import json; ..."` for ad-hoc inspection — no dependencies are installed.
 - Card images live on `cdn.swu-db.com`; do not assume offline availability.
 - When citing rules, reference page numbers from `SWU_Rules_v7_0.pdf` (use the `Read` tool with a `pages` range — the file is large).
+
+## Key rules reminders (common analysis pitfalls)
+
+Cite `SWU_Rules_v7_0.pdf` when an interaction hinges on these.
+
+- **Units enter play exhausted — they cannot attack the round they are played.** Every non-leader unit (and tokens such as Spy, Battle Droid, Clone Trooper) enters play *exhausted* ("Ready and Exhausted": *"Each non-leader unit and resource enters play exhausted"*). Exhausted units ready during the **regroup phase** at the end of the round, so a unit first attacks on the *following* round. An exhausted unit also cannot be chosen as the attacker by an ability that says "attack with a unit" (e.g. Saw Gerrera's leader action) — the attack sequence's step 3 is "Exhaust the attacker," which an already-exhausted unit can't do.
+  - Exceptions to know: **leaders deploy *ready*** (a deployed Leader Unit can attack the turn it deploys); **Ambush** lets a unit attack *an enemy unit* the turn it's played "even if this unit is exhausted" (only an enemy unit, and only if a legal one exists); cards that **ready** a unit (e.g. Undercover Operation — *"Ready a unit that was played this phase"*) effectively grant it haste for that turn.
+  - **Sentinel is unaffected by ready/exhausted state** — a freshly-played Sentinel unit is a live blocker immediately.
+- Turn 1, with no prior board, is therefore a development-only turn for both players — no attacks are possible (and a "fling a unit" leader action has no legal target).
 
 ## Persona: Premier-format deck analyst
 
