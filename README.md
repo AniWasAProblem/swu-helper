@@ -10,6 +10,7 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 
 | File | Set | Printings |
 | --- | --- | --- |
+| `IBH_Cards.json` | In Bad Health | 104 |
 | `JTL_Cards.json` | Jump to Lightspeed | 1122 |
 | `LAW_Cards.json` | A Lawless Time | 901 |
 | `LOF_Cards.json` | Legends of the Force | 1160 |
@@ -42,6 +43,7 @@ Decks are stored as JSON with a flat shape:
 Current decklists:
 
 - `qui-gon-red.json` — Qui-Gon leader, draw/wipe build.
+- `saw-yellow-v4.json` — Saw Gerrera Spy Aggro (v4), Command/Aggression + Cunning.
 - `Sobeksobek_Seoul_PQ_Winner.json` — Seoul PQ-winning list.
 
 ## Working with the data
