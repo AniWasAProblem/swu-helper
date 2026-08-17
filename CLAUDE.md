@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Reference data for Star Wars: Unlimited (SWU). There is no application code, build system, or test suite — just data assets:
 
 - `{SET}_Cards.json` — card dumps from swu-db, one file per set (`JTL`, `LAW`, `LOF`, `SEC`).
-- `SWU_Rules_v7_0.pdf` — the official comprehensive rules (v7.0).
+- `SWU_Rules_v8_0.pdf` — the official comprehensive rules (v8.0).
 
 Any tooling (deck builders, lookups, analysis scripts) is not yet present; if asked to build something, treat these files as the source of truth and place new code in this directory.
 
@@ -45,11 +45,11 @@ The `*_Cards.json` files contain only deck cards — **token units/upgrades have
 
 - Use `python3 -c "import json; ..."` for ad-hoc inspection — no dependencies are installed.
 - Card images live on `cdn.swu-db.com`; do not assume offline availability.
-- When citing rules, reference page numbers from `SWU_Rules_v7_0.pdf` (use the `Read` tool with a `pages` range — the file is large).
+- When citing rules, reference page numbers from `SWU_Rules_v8_0.pdf` (use the `Read` tool with a `pages` range — the file is large).
 
 ## Key rules reminders (common analysis pitfalls)
 
-Cite `SWU_Rules_v7_0.pdf` when an interaction hinges on these.
+Cite `SWU_Rules_v8_0.pdf` when an interaction hinges on these.
 
 - **Units enter play exhausted — they cannot attack the round they are played.** Every non-leader unit (and tokens such as Spy, Battle Droid, Clone Trooper) enters play *exhausted* ("Ready and Exhausted": *"Each non-leader unit and resource enters play exhausted"*). Exhausted units ready during the **regroup phase** at the end of the round, so a unit first attacks on the *following* round. An exhausted unit also cannot be chosen as the attacker by an ability that says "attack with a unit" (e.g. Saw Gerrera's leader action) — the attack sequence's step 3 is "Exhaust the attacker," which an already-exhausted unit can't do.
   - Exceptions to know: **leaders deploy *ready*** (a deployed Leader Unit can attack the turn it deploys); **Ambush** lets a unit attack *an enemy unit* the turn it's played "even if this unit is exhausted" (only an enemy unit, and only if a legal one exists); cards that **ready** a unit (e.g. Undercover Operation — *"Ready a unit that was played this phase"*) effectively grant it haste for that turn.

@@ -3,7 +3,21 @@
     "allow": [
       "Bash(python3 *)",
       "Bash(pdftotext -layout SWU_Rules_v7_0.pdf -)",
-      "Bash(apt list *)"
+      "Bash(apt list *)",
+      "Bash(apt-get update *)",
+      "Bash(apt-get install *)",
+      "Bash(sudo apt-get update)",
+      "Bash(sudo apt-get install -y poppler-utils)",
+      "Bash(pdftotext /home/josh/swu-helper/SWU_Rules_v8_0.pdf -)",
+      "Bash(grep -v \"^$\")",
+      "Bash(pdftoppm --version)",
+      "Bash(pdftoppm /home/josh/swu-helper/SWU_Rules_v8_0.pdf /tmp/rules -png -f 1 -l 3)",
+      "Read(//tmp/**)",
+      "Bash(pdftoppm /home/josh/swu-helper/SWU_Rules_v8_0.pdf /tmp/rules -png -f 4 -l 10)",
+      "Bash(pdftotext /home/josh/swu-helper/SWU_Rules_v8_0.pdf /tmp/rules.txt)",
+      "Bash(grep -E \"\\(^[0-9]+\\\\.[A-Z ]+$|KEYWORD\\)\")",
+      "Bash(awk '/^5\\\\. KEYWORD ABILITIES/,/^6\\\\. TRIGGERED ABILITIES/ {print NR\": \"$0}' /tmp/rules.txt)",
+      "Bash(grep -E \"^\\\\s{0,10}[A-Z][a-z]+\")"
     ]
   }
 }
