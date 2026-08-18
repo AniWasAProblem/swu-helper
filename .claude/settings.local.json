@@ -17,7 +17,10 @@
       "Bash(pdftotext /home/josh/swu-helper/SWU_Rules_v8_0.pdf /tmp/rules.txt)",
       "Bash(grep -E \"\\(^[0-9]+\\\\.[A-Z ]+$|KEYWORD\\)\")",
       "Bash(awk '/^5\\\\. KEYWORD ABILITIES/,/^6\\\\. TRIGGERED ABILITIES/ {print NR\": \"$0}' /tmp/rules.txt)",
-      "Bash(grep -E \"^\\\\s{0,10}[A-Z][a-z]+\")"
+      "Bash(grep -E \"^\\\\s{0,10}[A-Z][a-z]+\")",
+      "Bash(pdftotext SWU_Rules_v8_0.pdf -)",
+      "Bash(pdftotext -f 1 -l 400 SWU_Rules_v8_0.pdf /tmp/r.txt)",
+      "Bash(pdftotext SWU_Rules_v8_0.pdf /tmp/r8.txt)"
     ]
   }
 }
