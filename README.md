@@ -1,6 +1,6 @@
 # swu-helper
 
-Reference data and deck lists for **Star Wars: Unlimited** (SWU), focused on the Premier format. There is no application code here yet — just data assets used as a source of truth for analysis, brewing, and lookups.
+Reference data for **Star Wars: Unlimited** (SWU), focused on the Premier format. There is no application code here yet — just data assets used as a source of truth for analysis, brewing, and lookups.
 
 ## Contents
 
@@ -10,6 +10,8 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 
 | File | Set | Printings |
 | --- | --- | --- |
+| `ASH_Cards.json` | `ASH` | 925 |
+| `HMW_Cards.json` | Homeworlds | 954 |
 | `IBH_Cards.json` | In Bad Health | 104 |
 | `JTL_Cards.json` | Jump to Lightspeed | 1122 |
 | `LAW_Cards.json` | A Lawless Time | 901 |
@@ -18,15 +20,19 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 
 Each file is shaped as `{ "total_cards": <int>, "data": [ <card>, ... ] }`. **`total_cards` counts printings, not distinct cards** — every variant (`Normal`, `Foil`, `Hyperspace`, `Prestige`, `Showcase`, …) is a separate entry. To get unique cards, group by `(Set, Name, Subtitle)`, not by `Number`.
 
-Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Base` / `Event` / `Upgrade`), `Rarity`, `Aspects`, `Arenas`, `Cost`, `Power`, `HP`, `Keywords`, `Traits`, `FrontText`, `FrontArt`, plus pricing. Numeric fields are stored as strings. See `CLAUDE.md` for the full field-by-field breakdown, including conditional fields and gotchas (e.g. duplicate `Aspects` entries are intentional double-aspect requirements).
+Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Base` / `Event` / `Upgrade`; `HMW` also has `Token Unit` / `Token Upgrade`), `Rarity`, `Aspects`, `Arenas`, `Cost`, `Power`, `HP`, `Keywords`, `Traits`, `FrontText`, `FrontArt`, plus pricing. Numeric fields are stored as strings. See `CLAUDE.md` for the full field-by-field breakdown, including conditional fields and gotchas (e.g. duplicate `Aspects` entries are intentional double-aspect requirements).
+
+Token cards are generally **not** in the dumps. `HMW_Cards.json` is the exception — it includes its own Beast, Shield, and Weakness tokens (numbered `T01`–`T10`, so `Number` is not always numeric there). `CLAUDE.md` has a section on the other ways the Homeworlds dump differs: variant names, extra `cid` / `tcgplayerId` fields, planet-trait bases, the Fortify keyword.
 
 ### Rules
 
-- `SWU_Rules_v7_0.pdf` — official comprehensive rules, v7.0. Cite by page number when an interaction depends on a specific rule.
+- `SWU_Rules_v9_0.pdf` — official comprehensive rules, **v9.0 (10/9/26), the current version**. Cite by rule number and page when an interaction depends on a specific rule.
+
+v9.0 adds the Fortify keyword and the Weakness and Beast tokens, and changes several general rules (modifier order, searching, simultaneous choices, excess damage, exchanging control, leader and token replacement effects). `CLAUDE.md` lists every change from v8.0 with rule and page numbers.
 
 ### Decks
 
-Decks are stored as JSON with a flat shape:
+No decklists are checked in. When one is supplied for analysis, the expected format is JSON with a flat shape:
 
 ```json
 {
@@ -38,22 +44,17 @@ Decks are stored as JSON with a flat shape:
 }
 ```
 
-`id` is `<SET>_<Number>` and resolves against the corresponding `*_Cards.json` file (matching against the `Normal` variant for that `(Set, Number)`).
-
-Current decklists:
-
-- `qui-gon-red.json` — Qui-Gon leader, draw/wipe build.
-- `saw-yellow-v4.json` — Saw Gerrera Spy Aggro (v4), Command/Aggression + Cunning.
-- `Sobeksobek_Seoul_PQ_Winner.json` — Seoul PQ-winning list.
+`id` is `<SET>_<Number>` and resolves against the corresponding `*_Cards.json` file. It is usually the `Normal` variant's number, though a list may point at another printing (e.g. a Showcase leader).
 
 ## Working with the data
 
-No build system, no installed dependencies. Use `python3 -c "import json; ..."` for ad-hoc inspection. Card images are served from `cdn.swu-db.com` and are not cached locally.
+No build system, no installed dependencies. Use `python3 -c "import json; ..."` for ad-hoc inspection. `pdftotext -layout` is handy for searching the rules PDF. Card images are served from `cdn.swu-db.com` and are not cached locally.
 
 ## Notes for Claude Code
 
-`CLAUDE.md` contains the deck-analysis persona and the full data-shape reference Claude should follow when asked to analyze a list. If you're a human reading this, the highlights are:
+`CLAUDE.md` contains the deck-analysis persona, the full data-shape reference, the Homeworlds notes, and the v9.0 rules changelog Claude should follow when asked to analyze a list. If you're a human reading this, the highlights are:
 
 - Group by `(Set, Name, Subtitle)` to dedupe variants.
 - Leader **deploy** does not spend resources — the resource count is a threshold, not a payment.
 - "When Played: If…" conditions check at play time, so they fail on turn 1 plays that require another unit on the board.
+- Units enter play exhausted and can't attack the round they're played; leaders deploy ready.
