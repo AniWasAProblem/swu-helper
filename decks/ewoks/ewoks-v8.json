@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "name": "Wicket Ewok Swarm (v8)",
+    "author": "josh1238"
+  },
+  "leader": {
+    "id": "HMW_014",
+    "count": 1
+  },
+  "base": {
+    "id": "HMW_023",
+    "count": 1
+  },
+  "deck": [
+    {
+      "id": "ASH_107",
+      "count": 3
+    },
+    {
+      "id": "ASH_163",
+      "count": 2
+    },
+    {
+      "id": "ASH_166",
+      "count": 3
+    },
+    {
+      "id": "ASH_034",
+      "count": 2
+    },
+    {
+      "id": "HMW_115",
+      "count": 2
+    },
+    {
+      "id": "HMW_137",
+      "count": 3
+    },
+    {
+      "id": "HMW_162",
+      "count": 3
+    },
+    {
+      "id": "HMW_164",
+      "count": 1
+    },
+    {
+      "id": "HMW_176",
+      "count": 3
+    },
+    {
+      "id": "HMW_177",
+      "count": 3
+    },
+    {
+      "id": "HMW_257",
+      "count": 3
+    },
+    {
+      "id": "HMW_045",
+      "count": 3
+    },
+    {
+      "id": "LAW_057",
+      "count": 3
+    },
+    {
+      "id": "LOF_107",
+      "count": 1
+    },
+    {
+      "id": "ASH_138",
+      "count": 2
+    },
+    {
+      "id": "JTL_149",
+      "count": 3
+    },
+    {
+      "id": "HMW_193",
+      "count": 3
+    },
+    {
+      "id": "HMW_163",
+      "count": 2
+    },
+    {
+      "id": "LAW_181",
+      "count": 3
+    },
+    {
+      "id": "LAW_196",
+      "count": 2
+    }
+  ],
+  "sideboard": [
+    {
+      "id": "SEC_149",
+      "count": 3
+    },
+    {
+      "id": "HMW_270",
+      "count": 2
+    },
+    {
+      "id": "ASH_158",
+      "count": 2
+    },
+    {
+      "id": "ASH_129",
+      "count": 1
+    },
+    {
+      "id": "LAW_208",
+      "count": 1
+    },
+    {
+      "id": "SEC_179",
+      "count": 1
+    }
+  ]
+}

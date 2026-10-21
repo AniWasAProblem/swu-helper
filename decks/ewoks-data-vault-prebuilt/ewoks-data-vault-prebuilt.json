@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "name": "ewok deck",
+    "author": ""
+  },
+  "leader": {
+    "id": "HMW_014",
+    "count": 1
+  },
+  "base": {
+    "id": "JTL_024",
+    "count": 1
+  },
+  "deck": [
+    {
+      "id": "ASH_112",
+      "count": 2
+    },
+    {
+      "id": "ASH_129",
+      "count": 2
+    },
+    {
+      "id": "ASH_135",
+      "count": 3
+    },
+    {
+      "id": "ASH_138",
+      "count": 1
+    },
+    {
+      "id": "ASH_166",
+      "count": 3
+    },
+    {
+      "id": "ASH_183",
+      "count": 3
+    },
+    {
+      "id": "ASH_034",
+      "count": 3
+    },
+    {
+      "id": "HMW_115",
+      "count": 3
+    },
+    {
+      "id": "HMW_116",
+      "count": 3
+    },
+    {
+      "id": "HMW_124",
+      "count": 2
+    },
+    {
+      "id": "HMW_136",
+      "count": 3
+    },
+    {
+      "id": "HMW_162",
+      "count": 3
+    },
+    {
+      "id": "HMW_163",
+      "count": 3
+    },
+    {
+      "id": "HMW_164",
+      "count": 3
+    },
+    {
+      "id": "HMW_176",
+      "count": 3
+    },
+    {
+      "id": "HMW_177",
+      "count": 3
+    },
+    {
+      "id": "HMW_045",
+      "count": 3
+    },
+    {
+      "id": "LAW_149",
+      "count": 1
+    },
+    {
+      "id": "LOF_100",
+      "count": 2
+    },
+    {
+      "id": "LOF_107",
+      "count": 3
+    },
+    {
+      "id": "SEC_101",
+      "count": 2
+    },
+    {
+      "id": "SEC_114",
+      "count": 3
+    },
+    {
+      "id": "SEC_179",
+      "count": 3
+    }
+  ],
+  "sideboard": [
+    {
+      "id": "LOF_147",
+      "count": 2
+    },
+    {
+      "id": "SEC_163",
+      "count": 3
+    }
+  ]
+}

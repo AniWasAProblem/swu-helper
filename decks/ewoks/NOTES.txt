@@ -1,0 +1,58 @@
+HMW_014 Wicket
+HMW_023 Green Endor base => Bright Tree Village
+
+Ewok deck, lots of card draw, flips turn 3
+Probably want to get a cheap sentinel out turn 1 or 2
+Space is wide open so far
+
+HMW Ewok units on-aspect:
+HMW_045 Logray x2
+HMW_116 Ewok Brigade x3
+HMW_136 Lifetree Caravan x3
+HMW_162 Teebo x2
+HMW_163 Champions of Endor x3
+HMW_164 Chief Chirpa x1
+HMW_176 Village Troublemaker x3
+HMW_177 Adamant Ewoks x3
+HMW_257 Ewok Archers x3
+
+Other Ewok units on-aspect:
+LOF_107 Village Tender x3
+ASH_034 Wicket x1
+ASH_129 Defenders of the Forest x3
+ASH_166 Ewok Warrior x3
+
+Events:
+HMW_193 Nightfall x3
+SEC_179 Aggressive Negotiations x3
+
+Even more card draw:
+JTL_177 Stay on Target (If I have vehicles, big if) x3
+LOF_176 Lightsaber Throw - Discard lightsaber, deal 4 dmg to a ground unit, draw x3
+SEC_094 Mina Bonteri - WD Disclose GGW and draw x3
+ASH_116 Ant Droid - 1-drop WD draw x3
+HMW_172 Heavy Ion Cannon - FORTIFY WP draw, each phase can discard to deal 2 dmg to a unit (pop shield) x2
+HMW_180 Stormchaser - WP draw if there is a DISASTER card in my hand or discard pile x3
+
+DISASTER cards (for Stormchaser):
+LOF_177 Time of Crisis x3
+LAW_208 Collateral Damage x3
+HMW_193 Nightfall x3
+HMW_194 Run Amok - Love this, create beast and ping a friendly and enemy ground unit. Ping Gungi and discard to ready him x3
+
+Discarding for boon:
+LOF_160 Merrin - Discard to deal 2 damage to a unit x3
+HMW_166 Gungi - when he is dealt damage and survives, discard to ready him x1
+
+PLOT:
+SEC_123 Unveiled Might x3
+SEC_126 Trade Route Taxation x3
+SEC_176 Sudden Ferocity x3
+SEC_149 Kaydel Connix x3
+SEC_099 Naboo Royal Starship x2
+
+Finishers with Aggressive Negotiations and SABOTEUR:
+ASH_172 Razor Crest - Only 3 power but OA discard for +2/+0 (so that card gave +2 instead of +1) x3
+ASH_158 Han Solo - 3 power with 3 Advantage tokens, so 6 power for attack the next round (if not attacked first) x3
+LAW_196 Relentless Hunters - 5 power x3
+JTL_166 Orbiting K-Wing - 4 power x3

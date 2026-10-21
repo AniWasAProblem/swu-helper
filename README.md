@@ -2,17 +2,29 @@
 
 Reference data for **Star Wars: Unlimited** (SWU), focused on the Premier format. There is no application code here yet — just data assets used as a source of truth for analysis, brewing, and lookups.
 
+## Layout
+
+```
+swu-helper/
+├── CLAUDE.md
+├── README.md
+├── cards/              # card databases — one {SET}_Cards.json per set
+├── rules/              # comprehensive rules PDF
+└── decks/              # one subdirectory per deck being worked on
+    └── <deck-name>/    # that deck's decklist file(s) and anything else specific to it
+```
+
 ## Contents
 
-### Card data
+### Card data — `cards/`
 
 One file per set, dumped from [swu-db](https://swu-db.com):
 
-| File | Set | Printings |
+| File (in `cards/`) | Set | Printings |
 | --- | --- | --- |
-| `ASH_Cards.json` | `ASH` | 925 |
+| `ASH_Cards.json` | Ashes of the Empire | 925 |
 | `HMW_Cards.json` | Homeworlds | 954 |
-| `IBH_Cards.json` | In Bad Health | 104 |
+| `IBH_Cards.json` | Intro Battle: Hoth | 104 |
 | `JTL_Cards.json` | Jump to Lightspeed | 1122 |
 | `LAW_Cards.json` | A Lawless Time | 901 |
 | `LOF_Cards.json` | Legends of the Force | 1160 |
@@ -24,15 +36,17 @@ Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Ba
 
 Token cards are generally **not** in the dumps. `HMW_Cards.json` is the exception — it includes its own Beast, Shield, and Weakness tokens (numbered `T01`–`T10`, so `Number` is not always numeric there). `CLAUDE.md` has a section on the other ways the Homeworlds dump differs: variant names, extra `cid` / `tcgplayerId` fields, planet-trait bases, the Fortify keyword.
 
-### Rules
+### Rules — `rules/`
 
-- `SWU_Rules_v9_0.pdf` — official comprehensive rules, **v9.0 (10/9/26), the current version**. Cite by rule number and page when an interaction depends on a specific rule.
+- `rules/SWU_Rules_v9_0.pdf` — official comprehensive rules, **v9.0 (10/9/26), the current version**. Cite by rule number and page when an interaction depends on a specific rule.
 
 v9.0 adds the Fortify keyword and the Weakness and Beast tokens, and changes several general rules (modifier order, searching, simultaneous choices, excess damage, exchanging control, leader and token replacement effects). `CLAUDE.md` lists every change from v8.0 with rule and page numbers.
 
-### Decks
+### Decks — `decks/`
 
-No decklists are checked in. When one is supplied for analysis, the expected format is JSON with a flat shape:
+Each deck being worked on gets its own subdirectory, `decks/<deck-name>/`, holding that deck's decklist file(s) and anything else specific to it. Deck files do not go directly in `decks/`.
+
+No decklists are checked in yet. The expected decklist format is JSON with a flat shape:
 
 ```json
 {
@@ -44,7 +58,7 @@ No decklists are checked in. When one is supplied for analysis, the expected for
 }
 ```
 
-`id` is `<SET>_<Number>` and resolves against the corresponding `*_Cards.json` file. It is usually the `Normal` variant's number, though a list may point at another printing (e.g. a Showcase leader).
+`id` is `<SET>_<Number>` and resolves against the corresponding `cards/<SET>_Cards.json` file. It is usually the `Normal` variant's number, though a list may point at another printing (e.g. a Showcase leader).
 
 ## Working with the data
 

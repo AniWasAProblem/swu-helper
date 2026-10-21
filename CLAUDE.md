@@ -6,16 +6,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Reference data for Star Wars: Unlimited (SWU). There is no application code, build system, or test suite — just data assets:
 
-- `{SET}_Cards.json` — card dumps from swu-db, one file per set (`JTL`, `LAW`, `LOF`, `SEC`, `HMW`). `HMW` = **Homeworlds**; see "Homeworlds (`HMW`) specifics" below for where its dump differs from the older ones.
-- `SWU_Rules_v9_0.pdf` — the official comprehensive rules, **v9.0 (10/9/26) — the current version; cite this one**.
+- `cards/{SET}_Cards.json` — card dumps from swu-db, one file per set. Set codes: `ASH` = **Ashes of the Empire**, `HMW` = **Homeworlds**, `IBH` = **Intro Battle: Hoth**, `JTL` = **Jump to Lightspeed**, `LAW` = **A Lawless Time**, `LOF` = **Legends of the Force**, `SEC` = **Secrets of Power**. See "Homeworlds (`HMW`) specifics" below for where the `HMW` dump differs from the older ones; `IBH` is a small two-deck product whose dump is laid out differently — see "Counts" below.
+- `rules/SWU_Rules_v9_0.pdf` — the official comprehensive rules, **v9.0 (10/9/26) — the current version; cite this one**.
 
-Any tooling (deck builders, lookups, analysis scripts) is not yet present; if asked to build something, treat these files as the source of truth and place new code in this directory.
+- `swudb_collection.csv` — the user's card collection (export from swu-db), columns `Set,CardNumber,Count,IsFoil,Stamp`. See "The user's collection" below.
+
+Any tooling (deck builders, lookups, analysis scripts) is not yet present; if asked to build something, treat these files as the source of truth and place new code in the repository root, not inside the data directories below.
+
+## Directory layout
+
+```
+swu-helper/
+├── CLAUDE.md
+├── README.md
+├── cards/              # card databases — one {SET}_Cards.json per set
+├── rules/              # comprehensive rules PDF(s)
+└── decks/              # one subdirectory per deck being worked on
+    └── <deck-name>/    # that deck's decklist file(s) and anything else specific to it
+```
+
+- **`cards/`** — card dumps only. A new set's dump goes here as `{SET}_Cards.json`. Elsewhere in this file a bare `{SET}_Cards.json` name means `cards/{SET}_Cards.json`.
+- **`rules/`** — the rules PDF only. A new rules version goes here; a bare `SWU_Rules_v9_0.pdf` means `rules/SWU_Rules_v9_0.pdf`.
+- **`decks/`** — never put deck files directly in `decks/`. Each deck gets its own subdirectory (`decks/<deck-name>/`), and every file for that deck — decklist JSON, later revisions, notes — lives inside it. When starting a new deck, create its subdirectory first; when revising an existing deck, work inside its existing subdirectory rather than creating a new one. A deck `id` of `<SET>_<Number>` resolves against `cards/<SET>_Cards.json`.
 
 ## Card JSON shape
 
 Each file is `{ "total_cards": <int>, "data": [ <card>, ... ] }`. `total_cards` counts **printings**, not distinct cards — every variant gets its own entry, so unique-card counts are much smaller than `total_cards` suggests.
 
-A single logical card appears once per `VariantType`. Observed values: `Normal`, `Foil`, `Hyperspace`, `Hyperspace Foil`, `Prestige`, `Prestige Foil`, `Prestige Serialized`, `Showcase`. `HMW` has no plain `Foil` variant and names its serialized printing `Serialized` (not `Prestige Serialized`). To deduplicate, group by `(Set, Name, Subtitle)` — *not* by `Number`, since each variant has a different `Number`.
+A single logical card appears once per `VariantType`. Observed values: `Normal`, `Foil`, `Hyperspace`, `Hyperspace Foil`, `Prestige`, `Prestige Foil`, `Prestige Serialized`, `Showcase`. `ASH` and `HMW` have no plain `Foil` variant, and `HMW` names its serialized printing `Serialized` (not `Prestige Serialized`). To deduplicate, group by `(Set, Name, Subtitle)` — *not* by `Number`, since each variant has a different `Number`.
 
 ### Per-card fields
 
@@ -35,17 +53,20 @@ Conditional fields:
 
 ### Token cards are NOT in the dumps (except `HMW`)
 
-The `JTL`/`LAW`/`LOF`/`SEC` files contain only deck cards — **token units/upgrades have no entry**. `HMW_Cards.json` is the exception: it carries entries for its own three tokens (Beast, Shield, Weakness — see the Homeworlds section), but still not for tokens from other sets. Known token stats (from the comprehensive rules): **Spy token** = 0 power / 2 HP ground unit, OFFICIAL trait, no aspect icons, **Raid 2** (so it attacks as a 2-power unit). **Battle Droid token** = 1/1 ground unit, SEPARATIST/DROID/TROOPER, Villainy. **Clone Trooper token** = 2/2 ground unit, REPUBLIC/CLONE/TROOPER, Heroism. **Experience token** = upgrade, +1/+1. **Shield token** = upgrade, +0/+0, prevents the next instance of damage. **Force token** = no stats (base-zone token). Added in rules v9.0 (3.7.16–17, p. 18): **Weakness token** = upgrade, CONDITION trait, -1/-1, stacks per token. **Beast token** = 3/3 **ground** unit, CREATURE trait, no aspect icons. When a deck references a token, look up its profile from the rules, not the JSON.
+The `ASH`/`IBH`/`JTL`/`LAW`/`LOF`/`SEC` files contain only deck cards — **token units/upgrades have no entry**. `HMW_Cards.json` is the exception: it carries entries for its own three tokens (Beast, Shield, Weakness — see the Homeworlds section), but still not for tokens from other sets. Known token stats (from the comprehensive rules): **Spy token** = 0 power / 2 HP ground unit, OFFICIAL trait, no aspect icons, **Raid 2** (so it attacks as a 2-power unit). **Battle Droid token** = 1/1 ground unit, SEPARATIST/DROID/TROOPER, Villainy. **Clone Trooper token** = 2/2 ground unit, REPUBLIC/CLONE/TROOPER, Heroism. **Experience token** = upgrade, +1/+1. **Shield token** = upgrade, +0/+0, prevents the next instance of damage. **Force token** = no stats (base-zone token). Added in rules v9.0 (3.7.16–17, p. 18): **Weakness token** = upgrade, CONDITION trait, -1/-1, stacks per token. **Beast token** = 3/3 **ground** unit, CREATURE trait, no aspect icons. When a deck references a token, look up its profile from the rules, not the JSON.
 
 ### Counts (printings, not unique cards)
 
-`JTL`: 1122 · `LAW`: 901 · `LOF`: 1160 · `SEC`: 1151 · `HMW`: 954 (275 distinct by `(Set, Name, Subtitle)`: 272 deck cards + 3 tokens). If a task talks about "how many cards in set X," confirm whether the user means printings or distinct cards.
+`ASH`: 925 (264 distinct) · `HMW`: 954 (275 distinct by `(Set, Name, Subtitle)`: 272 deck cards + 3 tokens) · `IBH`: 104 (51 distinct) · `JTL`: 1122 · `LAW`: 901 · `LOF`: 1160 · `SEC`: 1151. If a task talks about "how many cards in set X," confirm whether the user means printings or distinct cards.
+
+- **`ASH`** (Ashes of the Empire) — a full-size set: 179 Units, 34 Events, 25 Upgrades, 18 Leaders, 8 Bases. Variants are `Normal`, `Hyperspace`, `Hyperspace Foil`, `Prestige`, `Prestige Foil`, `Prestige Serialized`, `Showcase` (no plain `Foil`), and `VariantType == "Normal"` gives exactly one row per card. Like `HMW` it carries `cid` and `tcgplayerId`. No token entries.
+- **`IBH`** (Intro Battle: Hoth) — two preconstructed decks (leaders Leia Organa and Darth Vader, bases Echo Caverns and Forward Command Post). Every entry is `VariantType: "Normal"` and `Rarity: "Special"`, but **each physical copy in a decklist has its own entry and `Number`** (Blizzard Force AT-ST is `70`, `89`, and `103`), so filtering on `Normal` does *not* dedupe — group by `(Set, Name, Subtitle)`. `Number` is unpadded here (`"2"`, not `"002"`). No `cid`/`tcgplayerId`, no token entries.
 
 ## Homeworlds (`HMW`) specifics
 
 `HMW_Cards.json` — 954 printings. Distinct cards: 180 Units, 31 Events, 27 Upgrades, 18 Leaders, 16 Bases, plus 3 tokens. Themed around four planets: **Endor, Kashyyyk, Naboo, Tatooine**.
 
-- **Extra fields.** Every entry has `cid`; all have `tcgplayerId` except Bases and tokens. Neither exists in the `JTL`/`LAW`/`LOF`/`SEC` dumps. `Traits` is present on every entry, including Bases.
+- **Extra fields.** Every entry has `cid`; all have `tcgplayerId` except Bases and tokens. `ASH` has both too; neither exists in the `IBH`/`JTL`/`LAW`/`LOF`/`SEC` dumps. `Traits` is present on every entry, including Bases.
 - **Variants.** `Normal`, `Hyperspace`, `Hyperspace Foil`, `Prestige`, `Prestige Foil`, `Serialized`, `Showcase`. Filter on `VariantType == "Normal"` for one row per card — except the Beast token, which has three `Normal` printings (`T03`–`T05`, different art), so still dedupe by name.
 - **Tokens are in the file**, with `Number` values `T01`–`T10` — so `Number` is not always numeric in this set; don't `int()` it blindly. Deck cards run `001`–`944`.
   - **Beast token** (`Token Unit`) = 3/3, CREATURE trait, `Aspects: []`, no text. The entry has **no `Arenas` field** — it is a ground unit per rules 3.7.17.
@@ -94,15 +115,24 @@ Every addition/change in v9.0 (red text in the PDF, cross-checked against a full
 - The lasting-effect examples no longer name Surprise Strike / Wolffe.
 - Contents page numbers updated: 1.8 Cost p. 7, 1.16 Game State p. 11, 7.6 Triggered Abilities p. 35, 7.7 Effects p. 37.
 
+## The user's collection
+
+`swudb_collection.csv` lists every card the user owns. When building or revising a deck, only use cards they own in the needed quantity. Check with `python3 check_owned.py decks/<deck>/<file>.json`.
+
+- **Premier-legal sets are only `ASH`, `HMW`, `JTL`, `LAW`, `LOF`, `SEC`.** The CSV also contains non-legal sets (`SOR`, `SHD`, `TWI`, `IBH`, promo codes like `SECP`, `TWIOP`); ignore them for Premier decks.
+- **One row per printing.** `CardNumber` is the variant's `Number` (Normal, Hyperspace, foil, etc. each have their own). To get how many copies of a card are owned, map each row to `(Set, Name, Subtitle)` via `cards/{SET}_Cards.json` and sum `Count` across printings.
+- A few `CardNumber` values have a letter suffix (`SEC 571m`). Strip it and count the row as that printing.
+
 ## Working with this data
 
 - Use `python3 -c "import json; ..."` for ad-hoc inspection — no dependencies are installed.
 - Card images live on `cdn.swu-db.com`; do not assume offline availability.
-- When citing rules, reference rule numbers and page numbers from `SWU_Rules_v9_0.pdf` (v9.0; 56 pages — use the `Read` tool with a `pages` range, or `pdftotext -layout` for searching). Page numbers shifted by one in places between v8.0 and v9.0, so don't reuse v8.0 page cites.
+- Run commands from the repository root and use the directory-qualified paths (`cards/HMW_Cards.json`, `rules/SWU_Rules_v9_0.pdf`, `decks/<deck-name>/...`).
+- When citing rules, reference rule numbers and page numbers from `rules/SWU_Rules_v9_0.pdf` (v9.0; 56 pages — use the `Read` tool with a `pages` range, or `pdftotext -layout` for searching). Page numbers shifted by one in places between v8.0 and v9.0, so don't reuse v8.0 page cites.
 
 ## Key rules reminders (common analysis pitfalls)
 
-Cite the v9.0 rules (`SWU_Rules_v9_0.pdf`) when an interaction hinges on these. Nothing in this section changed in v9.0.
+Cite the v9.0 rules (`rules/SWU_Rules_v9_0.pdf`) when an interaction hinges on these. Nothing in this section changed in v9.0.
 
 - **Units enter play exhausted — they cannot attack the round they are played.** Every non-leader unit (and tokens such as Spy, Battle Droid, Clone Trooper) enters play *exhausted* ("Ready and Exhausted": *"Each non-leader unit and resource enters play exhausted"*). Exhausted units ready during the **regroup phase** at the end of the round, so a unit first attacks on the *following* round. An exhausted unit also cannot be chosen as the attacker by an ability that says "attack with a unit" (e.g. Saw Gerrera's leader action) — the attack sequence's step 3 is "Exhaust the attacker," which an already-exhausted unit can't do.
   - Exceptions to know: **leaders deploy *ready*** (a deployed Leader Unit can attack the turn it deploys); **Ambush** lets a unit attack *an enemy unit* the turn it's played "even if this unit is exhausted" (only an enemy unit, and only if a legal one exists); cards that **ready** a unit (e.g. Undercover Operation — *"Ready a unit that was played this phase"*) effectively grant it haste for that turn.
