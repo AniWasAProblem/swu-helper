@@ -27,7 +27,7 @@ swu-helper/
 
 - **`cards/`** — card dumps only. A new set's dump goes here as `{SET}_Cards.json`. Elsewhere in this file a bare `{SET}_Cards.json` name means `cards/{SET}_Cards.json`.
 - **`rules/`** — the rules PDF only. A new rules version goes here; a bare `SWU_Rules_v9_0.pdf` means `rules/SWU_Rules_v9_0.pdf`.
-- **`decks/`** — never put deck files directly in `decks/`. Each deck gets its own subdirectory (`decks/<deck-name>/`), and every file for that deck — decklist JSON, later revisions, notes — lives inside it. When starting a new deck, create its subdirectory first; when revising an existing deck, work inside its existing subdirectory rather than creating a new one. A deck `id` of `<SET>_<Number>` resolves against `cards/<SET>_Cards.json`.
+- **`decks/`** — never put deck files directly in `decks/`. Each deck gets its own subdirectory (`decks/<deck-name>/`), and every file for that deck — decklist JSON, later revisions, notes — lives inside it. When starting a new deck, create its subdirectory first; when revising an existing deck, work inside its existing subdirectory rather than creating a new one. Each strategy doc (`STRATEGY-vN.md`) must be complete on its own, written for a new player who has only that file. Don't describe it as changes from an earlier version ("vN is vN-1 with…"), and don't send the reader to earlier docs for analysis or piloting advice. Carry forward everything that still applies, rewritten for the current list, and drop anything about cards no longer in the deck. A deck `id` of `<SET>_<Number>` resolves against `cards/<SET>_Cards.json`.
 
 ## Card JSON shape
 
