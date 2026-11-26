@@ -25,6 +25,7 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 | `ASH_Cards.json` | Ashes of the Empire | 925 |
 | `HMW_Cards.json` | Homeworlds | 954 |
 | `IBH_Cards.json` | Intro Battle: Hoth | 104 |
+| `IC27_Cards.json` | Icons | 568 |
 | `JTL_Cards.json` | Jump to Lightspeed | 1122 |
 | `LAW_Cards.json` | A Lawless Time | 901 |
 | `LOF_Cards.json` | Legends of the Force | 1160 |
@@ -32,9 +33,9 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 
 Each file is shaped as `{ "total_cards": <int>, "data": [ <card>, ... ] }`. **`total_cards` counts printings, not distinct cards** — every variant (`Normal`, `Foil`, `Hyperspace`, `Prestige`, `Showcase`, …) is a separate entry. To get unique cards, group by `(Set, Name, Subtitle)`, not by `Number`.
 
-Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Base` / `Event` / `Upgrade`; `HMW` also has `Token Unit` / `Token Upgrade`), `Rarity`, `Aspects`, `Arenas`, `Cost`, `Power`, `HP`, `Keywords`, `Traits`, `FrontText`, `FrontArt`, plus pricing. Numeric fields are stored as strings. See `CLAUDE.md` for the full field-by-field breakdown, including conditional fields and gotchas (e.g. duplicate `Aspects` entries are intentional double-aspect requirements).
+Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Base` / `Event` / `Upgrade`; `HMW` also has `Token Unit` / `Token Upgrade`; `IC27` has `Token Upgrade`), `Rarity`, `Aspects`, `Arenas`, `Cost`, `Power`, `HP`, `Keywords`, `Traits`, `FrontText`, `FrontArt`, plus pricing. Numeric fields are stored as strings. See `CLAUDE.md` for the full field-by-field breakdown, including conditional fields and gotchas (e.g. duplicate `Aspects` entries are intentional double-aspect requirements).
 
-Token cards are generally **not** in the dumps. `HMW_Cards.json` is the exception — it includes its own Beast, Shield, and Weakness tokens (numbered `T01`–`T10`, so `Number` is not always numeric there). `CLAUDE.md` has a section on the other ways the Homeworlds dump differs: variant names, extra `cid` / `tcgplayerId` fields, planet-trait bases, the Fortify keyword.
+Token cards are generally **not** in the dumps. Two exceptions carry their own tokens: `HMW_Cards.json` (Beast, Shield, and Weakness, numbered `T01`–`T10`) and `IC27_Cards.json` (Experience and Shield, numbered `T01`–`T02`). In both, `Number` is not always numeric, so don't `int()` it blindly. `CLAUDE.md` has a section on the other ways the Homeworlds dump differs (variant names, extra `cid` / `tcgplayerId` fields, planet-trait bases, the Fortify keyword) and a section on the Icons dump (bases without `Traits`, leader stats, Premier-legality status).
 
 ### Rules — `rules/`
 

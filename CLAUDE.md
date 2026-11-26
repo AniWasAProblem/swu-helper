@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Reference data for Star Wars: Unlimited (SWU). There is no application code, build system, or test suite — just data assets:
 
-- `cards/{SET}_Cards.json` — card dumps from swu-db, one file per set. Set codes: `ASH` = **Ashes of the Empire**, `HMW` = **Homeworlds**, `IBH` = **Intro Battle: Hoth**, `JTL` = **Jump to Lightspeed**, `LAW` = **A Lawless Time**, `LOF` = **Legends of the Force**, `SEC` = **Secrets of Power**. See "Homeworlds (`HMW`) specifics" below for where the `HMW` dump differs from the older ones; `IBH` is a small two-deck product whose dump is laid out differently — see "Counts" below.
+- `cards/{SET}_Cards.json` — card dumps from swu-db, one file per set. Set codes: `ASH` = **Ashes of the Empire**, `HMW` = **Homeworlds**, `IBH` = **Intro Battle: Hoth**, `JTL` = **Jump to Lightspeed**, `LAW` = **A Lawless Time**, `LOF` = **Legends of the Force**, `SEC` = **Secrets of Power**, `IC27` = **Icons**. See "Homeworlds (`HMW`) specifics" below for where the `HMW` dump differs from the older ones; "Icons (`IC27`) specifics" covers the newest dump; `IBH` is a small two-deck product whose dump is laid out differently — see "Counts" below.
 - `rules/SWU_Rules_v9_0.pdf` — the official comprehensive rules, **v9.0 (10/9/26) — the current version; cite this one**.
 
 - `swudb_collection.csv` — the user's card collection (export from swu-db), columns `Set,CardNumber,Count,IsFoil,Stamp`. See "The user's collection" below.
@@ -40,7 +40,7 @@ A single logical card appears once per `VariantType`. Observed values: `Normal`,
 Always present: `Set`, `Number`, `Name`, `Type`, `Rarity`, `DoubleSided`, `Unique`, `Artist`, `VariantType`, `FrontArt`, plus pricing fields (`MarketPrice`, `FoilPrice`, optionally `LowPrice` / `LowFoilPrice`). Numeric fields (`Cost`, `Power`, `HP`, `Number`) are stored as **strings**.
 
 Conditional fields:
-- `Type` ∈ {`Unit`, `Leader`, `Base`, `Event`, `Upgrade`}. `HMW` adds `Token Unit` and `Token Upgrade`.
+- `Type` ∈ {`Unit`, `Leader`, `Base`, `Event`, `Upgrade`}. `HMW` adds `Token Unit` and `Token Upgrade`; `IC27` adds `Token Upgrade` only.
 - `Aspects` — list of {`Aggression`, `Command`, `Cunning`, `Heroism`, `Vigilance`, `Villainy`}. **Duplicates are meaningful**: `["Command", "Command"]` means the card has a double aspect requirement, not a data bug. Absent on most `Base` cards' off-aspect variants? No — Bases also carry an aspect. `Aspects` may be missing on a small number of cards (treat as empty).
 - `Arenas` ∈ {`Ground`, `Space`} — present on `Unit` and `Leader`, absent on `Event`/`Upgrade`/`Base`.
 - `Power` / `HP` — `Unit` and `Leader` only; `Base` has only `HP`.
@@ -51,16 +51,30 @@ Conditional fields:
 - `Keywords` — parsed list of keyword abilities (`Overwhelm`, `Saboteur`, `Sentinel`, …); the same keywords also appear inline in `FrontText` with reminder text.
 - `Traits` — uppercase strings like `IMPERIAL`, `VEHICLE`, `FORCE`. Used for card-text references ("friendly Force unit").
 
-### Token cards are NOT in the dumps (except `HMW`)
+### Token cards are NOT in the dumps (except `HMW` and `IC27`)
 
-The `ASH`/`IBH`/`JTL`/`LAW`/`LOF`/`SEC` files contain only deck cards — **token units/upgrades have no entry**. `HMW_Cards.json` is the exception: it carries entries for its own three tokens (Beast, Shield, Weakness — see the Homeworlds section), but still not for tokens from other sets. Known token stats (from the comprehensive rules): **Spy token** = 0 power / 2 HP ground unit, OFFICIAL trait, no aspect icons, **Raid 2** (so it attacks as a 2-power unit). **Battle Droid token** = 1/1 ground unit, SEPARATIST/DROID/TROOPER, Villainy. **Clone Trooper token** = 2/2 ground unit, REPUBLIC/CLONE/TROOPER, Heroism. **Experience token** = upgrade, +1/+1. **Shield token** = upgrade, +0/+0, prevents the next instance of damage. **Force token** = no stats (base-zone token). Added in rules v9.0 (3.7.16–17, p. 18): **Weakness token** = upgrade, CONDITION trait, -1/-1, stacks per token. **Beast token** = 3/3 **ground** unit, CREATURE trait, no aspect icons. When a deck references a token, look up its profile from the rules, not the JSON.
+The `ASH`/`IBH`/`JTL`/`LAW`/`LOF`/`SEC` files contain only deck cards — **token units/upgrades have no entry**. `HMW_Cards.json` is the exception: it carries entries for its own three tokens (Beast, Shield, Weakness — see the Homeworlds section). `IC27_Cards.json` also carries its own two tokens (Experience, Shield — see the Icons section). Neither file has entries for tokens from other sets. Known token stats (from the comprehensive rules): **Spy token** = 0 power / 2 HP ground unit, OFFICIAL trait, no aspect icons, **Raid 2** (so it attacks as a 2-power unit). **Battle Droid token** = 1/1 ground unit, SEPARATIST/DROID/TROOPER, Villainy. **Clone Trooper token** = 2/2 ground unit, REPUBLIC/CLONE/TROOPER, Heroism. **Experience token** = upgrade, +1/+1. **Shield token** = upgrade, +0/+0, prevents the next instance of damage. **Force token** = no stats (base-zone token). Added in rules v9.0 (3.7.16–17, p. 18): **Weakness token** = upgrade, CONDITION trait, -1/-1, stacks per token. **Beast token** = 3/3 **ground** unit, CREATURE trait, no aspect icons. When a deck references a token, look up its profile from the rules, not the JSON.
 
 ### Counts (printings, not unique cards)
 
-`ASH`: 925 (264 distinct) · `HMW`: 954 (275 distinct by `(Set, Name, Subtitle)`: 272 deck cards + 3 tokens) · `IBH`: 104 (51 distinct) · `JTL`: 1122 · `LAW`: 901 · `LOF`: 1160 · `SEC`: 1151. If a task talks about "how many cards in set X," confirm whether the user means printings or distinct cards.
+`ASH`: 925 (264 distinct) · `HMW`: 954 (275 distinct by `(Set, Name, Subtitle)`: 272 deck cards + 3 tokens) · `IBH`: 104 (51 distinct) · `IC27`: 568 (196 distinct: 194 deck cards + 2 tokens) · `JTL`: 1122 · `LAW`: 901 · `LOF`: 1160 · `SEC`: 1151. If a task talks about "how many cards in set X," confirm whether the user means printings or distinct cards.
 
 - **`ASH`** (Ashes of the Empire) — a full-size set: 179 Units, 34 Events, 25 Upgrades, 18 Leaders, 8 Bases. Variants are `Normal`, `Hyperspace`, `Hyperspace Foil`, `Prestige`, `Prestige Foil`, `Prestige Serialized`, `Showcase` (no plain `Foil`), and `VariantType == "Normal"` gives exactly one row per card. Like `HMW` it carries `cid` and `tcgplayerId`. No token entries.
 - **`IBH`** (Intro Battle: Hoth) — two preconstructed decks (leaders Leia Organa and Darth Vader, bases Echo Caverns and Forward Command Post). Every entry is `VariantType: "Normal"` and `Rarity: "Special"`, but **each physical copy in a decklist has its own entry and `Number`** (Blizzard Force AT-ST is `70`, `89`, and `103`), so filtering on `Normal` does *not* dedupe — group by `(Set, Name, Subtitle)`. `Number` is unpadded here (`"2"`, not `"002"`). No `cid`/`tcgplayerId`, no token entries.
+
+## Icons (`IC27`) specifics
+
+`IC27_Cards.json` — 568 printings, 196 distinct cards: 150 Units, 24 Events, 8 Upgrades, 8 Leaders, 4 Bases, plus 2 tokens. Deck cards run `001`–`566` (three-digit, zero-padded); tokens are `T01`–`T02`.
+
+- **Dedupe.** `VariantType == "Normal"` gives exactly one row per distinct card (196 rows), so filtering on `Normal` is safe here. Group by `(Set, Name, Subtitle)` if you need to be defensive about it anyway.
+- **Variants.** `Normal`, `Hyperspace`, `Hyperspace Foil`, `Showcase`. No plain `Foil`, no `Prestige`, no `Serialized`. Leaders have only `Normal`, `Hyperspace`, and `Showcase` (no `Hyperspace Foil`). The `Showcase` printings are leaders only (8 of them).
+- **Extra fields.** Every card has `cid`; all have `tcgplayerId` except the 4 Bases and 2 tokens. Unlike `HMW`, **Bases have no `Traits` key at all**, so a base's identity comes only from its `Subtitle` (`Cloud City`, `Hoth`, `Mustafar`, `Tatooine`). Don't look for a planet trait on these bases — the `HMW` planet-base payoff logic does not apply to `IC27` as written.
+- **Tokens.** Both tokens have `Cost: "0"`, no `Arenas`, and no `Aspects` key.
+  - **Experience** (`Token Upgrade`, `T01`) = +1/+1, LEARNED trait, no text.
+  - **Shield** (`Token Upgrade`, `T02`) = +0/+0, ARMOR trait. Text: *"If damage would be dealt to attached unit, prevent that damage. If you do, defeat a Shield token on it."* This is the same token as in `HMW`; the token profiles in the "Token cards are NOT in the dumps" section also apply.
+- **Leaders.** All 8 are Double-sided with an Epic Action. Aspects are two-colour pairs (no single-aspect leaders in the set). Leader unit-side stats as printed in the dump (Power/HP): Asajj Ventress (Cunning/Villainy, 5/6), Darth Maul (Aggression/Villainy, 4/5), Darth Vader (Vigilance/Villainy, 5/7), Kylo Ren (Command/Villainy, 5/3), Luke Skywalker (Aggression/Heroism, 4/6), Mace Windu (Command/Heroism, 4/7), Princess Leia (Cunning/Heroism, 4/7), Rey (Vigilance/Heroism, 3/6).- **Keywords.** Only keywords already documented elsewhere in this file appear: Sentinel, Overwhelm, Saboteur, Restore, Raid, Hidden, Ambush, Shielded. No new keyword mechanics were found in the dump.
+- **Aspect duplicates.** Duplicate-aspect cards exist (e.g. `Cunning Ploy` carries `["Cunning", "Cunning"]`), same meaning as elsewhere in this file.
+- **Collection.** `swudb_collection.csv` currently has 172 `IC27` rows. Premier legality is **not** confirmed — see "The user's collection" below.
 
 ## Homeworlds (`HMW`) specifics
 
@@ -119,7 +133,7 @@ Every addition/change in v9.0 (red text in the PDF, cross-checked against a full
 
 `swudb_collection.csv` lists every card the user owns. When building or revising a deck, only use cards they own in the needed quantity. Check with `python3 check_owned.py decks/<deck>/<file>.json`.
 
-- **Premier-legal sets are only `ASH`, `HMW`, `JTL`, `LAW`, `LOF`, `SEC`.** The CSV also contains non-legal sets (`SOR`, `SHD`, `TWI`, `IBH`, promo codes like `SECP`, `TWIOP`); ignore them for Premier decks.
+- **Premier-legal sets are only `ASH`, `HMW`, `JTL`, `LAW`, `LOF`, `SEC`.** The CSV also contains non-legal sets (`SOR`, `SHD`, `TWI`, `IBH`, promo codes like `SECP`, `TWIOP`); ignore them for Premier decks. `IC27` (Icons) is in the card dumps and the CSV but is **not yet on this list** — confirm its Premier legality with the user before building Premier decks from it, and add it here once confirmed.
 - **One row per printing.** `CardNumber` is the variant's `Number` (Normal, Hyperspace, foil, etc. each have their own). To get how many copies of a card are owned, map each row to `(Set, Name, Subtitle)` via `cards/{SET}_Cards.json` and sum `Count` across printings.
 - A few `CardNumber` values have a letter suffix (`SEC 571m`). Strip it and count the row as that printing.
 
