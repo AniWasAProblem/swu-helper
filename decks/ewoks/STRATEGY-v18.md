@@ -298,9 +298,9 @@ Against decks that return or exhaust your units (Razor Crest, Death Space Skirmi
 | Shoot Down | 2 | 2-cost event: 3 damage to a space unit; if it is defeated, you may deal 2 to a base. Kills Green Leader, X-Wings, Y-Wings, Onyx Squadron Brute, Zygerrian Starhopper, or a damaged Red Five. |
 | Han Solo, It'll Work | 1 | The second copy, for matchups full of 6–7 HP ground units. Unique: with the main-deck copy, two Han Solos can't both be in play. |
 | Dorsal Turret | 2 | The second and third copies, for decks whose main threat is a big ship or a pilot leader. With all three copies you have the best odds of drawing one by turn 5. |
-| Wild Space Wanderer | 1 | Aspectless 3-cost 3/2 space unit. When Played: you may defeat an upgrade on a base. It removes an enemy Fortify upgrade, and it is also a Vehicle that can carry a Dorsal Turret. |
 | Desert Sharpshooter | 1 | 3-cost 3/3 Aggression. When Played: 2 damage to an upgraded ground unit. For Shield-heavy and unit-upgrade decks. |
 | Saw Gerrera, Shadowlands Insurgent | 1 | 4-cost 3/6 Command/Heroism. When an opponent plays an event: resource the top card of your deck. A 6-HP body for ping and sweeper decks. |
+| Qui-Gon Jinn, Unwavering Belief | 1 | 5-cost 5/5 Command/Heroism Ground Sentinel. When Played: give another friendly unit +2/+2 for this phase. Blocks ground attacks for your base and Ewoks, and attacks as 6 with Verdant Fortress's Raid. |
 
 **Swap guide** (each swap is one card out for one card in):
 
@@ -313,12 +313,12 @@ Against decks that return or exhaust your units (Razor Crest, Death Space Skirmi
 | Boba Fett / indirect damage | 1 Dorsal Turret, 1 Han Solo | 1 Leia Organa, 1 Village Tender |
 | Shields / unit upgrades | 2 Kaydel Connix | 1 Village Tender, 1 Leia Organa |
 | Space / pilots (Luke, Wedge) | 2 Shoot Down, 1 Dorsal Turret | 1 Village Tender, 1 Wicket, 1 Champions of Endor |
-| Fortify bases | 1 Wild Space Wanderer | 1 Village Tender |
+| Fast ground aggro | 1 Qui-Gon Jinn | 1 Ty Yorrick |
 
 Against Maul and Boba, Leia is the weakest card in the main deck: her 3 HP dies to The Legacy Run's split, and against Boba she and Village Tender lose their healing once General Grievous lands.
 
 Against Chewbacca, the second Han Solo is a 7-HP body that their 3–4 power attackers can't kill in one hit, and his tokens let a ready attacker kill a 6–7 HP unit. The Dorsal Turrets are blank there, because none of their threats are ships.
 
-Against a Fortify base, bring in Wild Space Wanderer only if one of their Fortify upgrades actually threatens you; otherwise ignore the upgrades and race.
+Against Fast ground aggro, bring in Qui-Gon Jinn for Ty Yorrick. Ty's +1 matters least when the opponent is attacking your board rather than trading damage with it, and Qui-Gon's Sentinel forces their ground attacks onto him. Use his When Played pump on a ready unit that is about to attack or block, since it lasts only that phase. Don't resource him as your turn-4 play in this matchup. Reckless Sacrifice still deals 5, which kills most ground aggro units. The Cannon drops to 2 and Adamant Ewoks deals 1 to a unit and 1 to the base. Sentinel only stops ground attacks, so space units still need a plan.
 
 The sideboard holds 10 cards. Hand-size-based pump effects aren't in this list, because the deck's hand is usually only 2–4 cards by the time it matters.
