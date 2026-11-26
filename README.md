@@ -31,6 +31,8 @@ One file per set, dumped from [swu-db](https://swu-db.com):
 | `LOF_Cards.json` | Legends of the Force | 1160 |
 | `SEC_Cards.json` | Secrets of Power | 1151 |
 
+Premier-legal sets: `ASH`, `HMW`, `IC27`, `JTL`, `LAW`, `LOF`, `SEC`. `IBH` is not Premier-legal.
+
 Each file is shaped as `{ "total_cards": <int>, "data": [ <card>, ... ] }`. **`total_cards` counts printings, not distinct cards** — every variant (`Normal`, `Foil`, `Hyperspace`, `Prestige`, `Showcase`, …) is a separate entry. To get unique cards, group by `(Set, Name, Subtitle)`, not by `Number`.
 
 Common per-card fields: `Set`, `Number`, `Name`, `Type` (`Unit` / `Leader` / `Base` / `Event` / `Upgrade`; `HMW` also has `Token Unit` / `Token Upgrade`; `IC27` has `Token Upgrade`), `Rarity`, `Aspects`, `Arenas`, `Cost`, `Power`, `HP`, `Keywords`, `Traits`, `FrontText`, `FrontArt`, plus pricing. Numeric fields are stored as strings. See `CLAUDE.md` for the full field-by-field breakdown, including conditional fields and gotchas (e.g. duplicate `Aspects` entries are intentional double-aspect requirements).

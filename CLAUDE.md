@@ -74,7 +74,7 @@ The `ASH`/`IBH`/`JTL`/`LAW`/`LOF`/`SEC` files contain only deck cards — **toke
   - **Shield** (`Token Upgrade`, `T02`) = +0/+0, ARMOR trait. Text: *"If damage would be dealt to attached unit, prevent that damage. If you do, defeat a Shield token on it."* This is the same token as in `HMW`; the token profiles in the "Token cards are NOT in the dumps" section also apply.
 - **Leaders.** All 8 are Double-sided with an Epic Action. Aspects are two-colour pairs (no single-aspect leaders in the set). Leader unit-side stats as printed in the dump (Power/HP): Asajj Ventress (Cunning/Villainy, 5/6), Darth Maul (Aggression/Villainy, 4/5), Darth Vader (Vigilance/Villainy, 5/7), Kylo Ren (Command/Villainy, 5/3), Luke Skywalker (Aggression/Heroism, 4/6), Mace Windu (Command/Heroism, 4/7), Princess Leia (Cunning/Heroism, 4/7), Rey (Vigilance/Heroism, 3/6).- **Keywords.** Only keywords already documented elsewhere in this file appear: Sentinel, Overwhelm, Saboteur, Restore, Raid, Hidden, Ambush, Shielded. No new keyword mechanics were found in the dump.
 - **Aspect duplicates.** Duplicate-aspect cards exist (e.g. `Cunning Ploy` carries `["Cunning", "Cunning"]`), same meaning as elsewhere in this file.
-- **Collection.** `swudb_collection.csv` currently has 172 `IC27` rows. Premier legality is **not** confirmed — see "The user's collection" below.
+- **Collection.** `swudb_collection.csv` currently has 172 `IC27` rows. `IC27` is Premier-legal — see "The user's collection" below.
 
 ## Homeworlds (`HMW`) specifics
 
@@ -133,7 +133,7 @@ Every addition/change in v9.0 (red text in the PDF, cross-checked against a full
 
 `swudb_collection.csv` lists every card the user owns. When building or revising a deck, only use cards they own in the needed quantity. Check with `python3 check_owned.py decks/<deck>/<file>.json`.
 
-- **Premier-legal sets are only `ASH`, `HMW`, `JTL`, `LAW`, `LOF`, `SEC`.** The CSV also contains non-legal sets (`SOR`, `SHD`, `TWI`, `IBH`, promo codes like `SECP`, `TWIOP`); ignore them for Premier decks. `IC27` (Icons) is in the card dumps and the CSV but is **not yet on this list** — confirm its Premier legality with the user before building Premier decks from it, and add it here once confirmed.
+- **Premier-legal sets are only `ASH`, `HMW`, `IC27`, `JTL`, `LAW`, `LOF`, `SEC`.** The CSV also contains non-legal sets (`SOR`, `SHD`, `TWI`, `IBH`, promo codes like `SECP`, `TWIOP`); ignore them for Premier decks.
 - **One row per printing.** `CardNumber` is the variant's `Number` (Normal, Hyperspace, foil, etc. each have their own). To get how many copies of a card are owned, map each row to `(Set, Name, Subtitle)` via `cards/{SET}_Cards.json` and sum `Count` across printings.
 - A few `CardNumber` values have a letter suffix (`SEC 571m`). Strip it and count the row as that printing.
 
